@@ -1,7 +1,7 @@
 use parser::ArgumentParser;
 use super::{IncrBy,DecrBy};
 use super::Store;
-use test_parser::{check_ok,check_err};
+use super::{check_ok,check_err};
 
 #[test]
 fn test_incr_decr() {

@@ -2,7 +2,7 @@ use std::from_str::FromStr;
 
 use parser::ArgumentParser;
 use super::Store;
-use test_parser::{check_ok,check_err};
+use super::{check_ok,check_err};
 
 enum Greeting {
     Hello,

@@ -1,9 +1,7 @@
 use std::io::MemWriter;
 use std::str::from_utf8;
-
 use parser::ArgumentParser;
 
-#[cfg(test)]
 pub fn check_ok(ap: &ArgumentParser, args: &[&str]) {
     let mut stdout = MemWriter::new();
     let mut stderr = MemWriter::new();
@@ -20,7 +18,6 @@ pub fn check_ok(ap: &ArgumentParser, args: &[&str]) {
     }
 }
 
-#[cfg(test)]
 pub fn check_exit(ap: &ArgumentParser, args: &[&str]) {
     let mut stdout = MemWriter::new();
     let mut stderr = MemWriter::new();
@@ -36,7 +33,6 @@ pub fn check_exit(ap: &ArgumentParser, args: &[&str]) {
     }
 }
 
-#[cfg(test)]
 pub fn check_err(ap: &ArgumentParser, args: &[&str]) {
     let mut stdout = MemWriter::new();
     let mut stderr = MemWriter::new();
@@ -51,20 +47,3 @@ pub fn check_err(ap: &ArgumentParser, args: &[&str]) {
         Ok(()) => fail!(format!("Expected failure, got success")),
     }
 }
-
-#[test]
-fn test_no_arg() {
-    let ap = ArgumentParser::new();
-    check_ok(&ap, ["./argparse_test"]);
-    check_err(&ap, ["./argparse_test", "a"]);
-    check_err(&ap, ["./argparse_test", "-a"]);
-    check_err(&ap, ["./argparse_test", "--an-option"]);
-}
-
-#[test]
-fn test_help() {
-    let ap = ArgumentParser::new();
-    check_ok(&ap, ["./argparse_test"]);
-    check_exit(&ap, ["./argparse_test", "--help"]);
-}
-

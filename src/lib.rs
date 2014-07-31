@@ -1,5 +1,4 @@
-#![crate_id = "argparse#0.1"]
-#![crate_type = "lib"]
+#![feature(globs)]
 
 extern crate collections;
 extern crate arena;
@@ -34,16 +33,22 @@ pub struct DecrBy<T>(pub T);
 
 pub type StoreBool = Store<bool>;
 
+#[cfg(test)]
+mod tests {
+    pub use super::*;
+    pub use self::common::{check_ok, check_err, check_exit};
 
-#[cfg(test)] mod test_parser;
-#[cfg(test)] mod test_bool;
-#[cfg(test)] mod test_int;
-#[cfg(test)] mod test_float;
-#[cfg(test)] mod test_str;
-#[cfg(test)] mod test_enum;
-#[cfg(test)] mod test_pos;
-#[cfg(test)] mod test_many;
-#[cfg(test)] mod test_optional;
-#[cfg(test)] mod test_usage;
-#[cfg(test)] mod test_help;
-#[cfg(test)] mod test_env;
+    mod test_parser;
+    mod test_bool;
+    mod test_int;
+    mod test_float;
+    mod test_str;
+    mod test_enum;
+    mod test_pos;
+    mod test_many;
+    mod test_optional;
+    mod test_usage;
+    mod test_help;
+    mod test_env;
+    mod common;
+}
