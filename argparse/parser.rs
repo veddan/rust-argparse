@@ -200,7 +200,7 @@ impl<'a, 'b> Context<'a, 'b> {
         let mut equals_iter = arg.splitn('=', 1);
         let optname = equals_iter.next().unwrap();
         let valueref = equals_iter.next();
-        let opt = self.parser.long_options.find(&optname.to_str());
+        let opt = self.parser.long_options.find(&optname.to_string());
         match opt {
             Some(opt) => {
                 match opt.action {
@@ -597,7 +597,7 @@ pub struct ArgumentParser<'a> {
 
 impl<'parser> ArgumentParser<'parser> {
 
-    pub fn new() -> ArgumentParser {
+    pub fn new() -> ArgumentParser<'parser> {
 
         let mut ap = ArgumentParser {
             description: "",
@@ -659,14 +659,14 @@ impl<'parser> ArgumentParser<'parser> {
                 }
                 LongOption => {
                     self.long_options.insert(
-                        name.to_str(), opt.clone());
+                        name.to_string(), opt.clone());
                 }
                 ShortOption => {
                     if name.len() > 2 {
                         fail!("Bad short argument {}", name);
                     }
                     self.short_options.insert(
-                        name[1] as char, opt.clone());
+                        name.char_at(1), opt.clone());
                 }
             }
         }
