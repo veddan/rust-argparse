@@ -1,8 +1,1 @@
-*.o
-*.so
-*.rlib
-/argparse_test
-
-# examples
-/greeting
-/structure
+target
